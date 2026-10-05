@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Student Registration form built with HTML5, CSS3 and vanilla JavaScript.">
+  <title>Student Registration | Web Forms</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#regForm">Skip to the form</a>
+<main class="page">
+
+  <!-- LEFT: intro -->
+  <section class="intro">
+    <p class="tag">WEB FORMS • HTML5 • JAVASCRIPT</p>
+    <h1>Student Registration</h1>
+    <p class="subtitle">Create your student profile and get started.</p>
+    <p class="lead">Fill in your details once and your profile is ready. Every field is checked as you type, so you can fix mistakes before you submit.</p>
+
+    <svg class="illustration" viewBox="0 0 320 190" role="img" aria-label="Illustration of a registration card with a graduation cap">
+      <rect x="40" y="30" width="190" height="140" rx="16" fill="#fff" stroke="#c7d2fe" stroke-width="2"/>
+      <circle cx="82" cy="72" r="18" fill="#e0e7ff"/>
+      <rect x="112" y="60" width="90" height="9" rx="4" fill="#c7d2fe"/>
+      <rect x="112" y="78" width="60" height="9" rx="4" fill="#e0e7ff"/>
+      <rect x="62" y="108" width="140" height="10" rx="5" fill="#e0e7ff"/>
+      <rect x="62" y="128" width="140" height="10" rx="5" fill="#e0e7ff"/>
+      <rect x="62" y="148" width="70" height="10" rx="5" fill="#4f46e5"/>
+      <polygon points="240,28 300,52 240,76 180,52" fill="#0f1b3d"/>
+      <path d="M205 64v22c0 8 70 8 70 0V64l-35 14z" fill="#1e2f66"/>
+      <line x1="298" y1="54" x2="298" y2="90" stroke="#4f46e5" stroke-width="3"/>
+      <circle cx="298" cy="94" r="5" fill="#4f46e5"/>
+    </svg>
+
+    <ul class="features">
+      <li>Instant feedback on every field</li>
+      <li>Password strength checker</li>
+      <li>Works on phone, tablet and desktop</li>
+      <li>Nothing is sent to a server</li>
+    </ul>
+  </section>
+
+  <!-- RIGHT: form -->
+  <section class="card" aria-labelledby="formTitle">
+    <h2 id="formTitle" class="sr-only">Registration form</h2>
+
+    <!-- Visual progress indicator (updates as the user moves through sections) -->
+    <ol class="progress" aria-label="Form progress">
+      <li class="active" data-step="1">Personal</li>
+      <li data-step="2">Academic</li>
+      <li data-step="3">Security</li>
+      <li data-step="4">Address</li>
+      <li data-step="5">Submit</li>
+    </ol>
+
+    <form id="regForm" novalidate>
+      <p class="note"><span class="req" aria-hidden="true">*</span> Required field</p>
+
+      <!-- 01 PERSONAL -->
+      <fieldset class="section" data-step="1">
+        <legend><span class="num">1</span>Personal information</legend>
+
+        <div class="field" data-field="fullName">
+          <label for="fullName">Full name <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="fullName" name="fullName" placeholder="e.g. Anjali Menon" required minlength="3" maxlength="60" autocomplete="name" aria-describedby="fullName-error">
+          <p class="error" id="fullName-error" role="alert"></p>
+        </div>
+
+        <div class="row">
+          <div class="field" data-field="email">
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" aria-describedby="email-error">
+            <p class="error" id="email-error" role="alert"></p>
+          </div>
+          <div class="field" data-field="phone">
+            <label for="phone">Phone number <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit number" required pattern="[0-9]{10}" maxlength="10" inputmode="numeric" autocomplete="tel" aria-describedby="phone-hint phone-error">
+            <p class="hint" id="phone-hint">Digits only, no spaces or +91.</p>
+            <p class="error" id="phone-error" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field" data-field="dob">
+            <label for="dob">Date of birth <span class="req" aria-hidden="true">*</span></label>
+            <input type="date" id="dob" name="dob" required aria-describedby="dob-error">
+            <p class="error" id="dob-error" role="alert"></p>
+          </div>
+          <div class="field" data-field="photo">
+            <label for="photo">Profile photo</label>
+            <input type="file" id="photo" name="photo" accept="image/*" aria-describedby="photo-hint photo-error">
+            <p class="hint" id="photo-hint">Optional. JPG or PNG, up to 2 MB.</p>
+            <p class="error" id="photo-error" role="alert"></p>
+          </div>
+        </div>
+
+        <fieldset class="field group" data-field="gender" aria-describedby="gender-error">
+          <legend>Gender <span class="req" aria-hidden="true">*</span></legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="gender" value="Male" required> Male</label>
+            <label class="choice"><input type="radio" name="gender" value="Female"> Female</label>
+            <label class="choice"><input type="radio" name="gender" value="Other"> Other</label>
+          </div>
+          <p class="error" id="gender-error" role="alert"></p>
+        </fieldset>
+      </fieldset>
+
+      <!-- 02 ACADEMIC -->
+      <fieldset class="section" data-step="2">
+        <legend><span class="num">2</span>Academic information</legend>
+
+        <div class="row">
+          <div class="field" data-field="department">
+            <label for="department">Department <span class="req" aria-hidden="true">*</span></label>
+            <select id="department" name="department" required aria-describedby="department-error">
+              <option value="">Select department</option>
+              <option>BCA</option><option>BBA</option><option>BCom</option>
+              <option>BA</option><option>BSc</option><option>Other</option>
+            </select>
+            <p class="error" id="department-error" role="alert"></p>
+          </div>
+          <div class="field" data-field="semester">
+            <label for="semester">Semester <span class="req" aria-hidden="true">*</span></label>
+            <select id="semester" name="semester" required aria-describedby="semester-error">
+              <option value="">Select semester</option>
+              <option>Semester 1</option><option>Semester 2</option><option>Semester 3</option>
+              <option>Semester 4</option><option>Semester 5</option><option>Semester 6</option>
+            </select>
+            <p class="error" id="semester-error" role="alert"></p>
+          </div>
+        </div>
+
+        <fieldset class="field group">
+          <legend>Skills</legend>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="skills" value="HTML"> HTML</label>
+            <label class="choice"><input type="checkbox" name="skills" value="CSS"> CSS</label>
+            <label class="choice"><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+            <label class="choice"><input type="checkbox" name="skills" value="Python"> Python</label>
+            <label class="choice"><input type="checkbox" name="skills" value="Java"> Java</label>
+            <label class="choice"><input type="checkbox" name="skills" value="Flutter"> Flutter</label>
+          </div>
+        </fieldset>
+
+        <div class="field" data-field="experience">
+          <label for="experience">Previous experience</label>
+          <textarea id="experience" name="experience" rows="3" maxlength="500" placeholder="Projects, internships or courses (optional)"></textarea>
+        </div>
+
+        <div class="field" data-field="portfolio">
+          <label for="portfolio">Portfolio / GitHub URL</label>
+          <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/your-username" aria-describedby="portfolio-error">
+          <p class="error" id="portfolio-error" role="alert"></p>
+        </div>
+      </fieldset>
+
+      <!-- 03 SECURITY -->
+      <fieldset class="section" data-step="3">
+        <legend><span class="num">3</span>Account security</legend>
+
+        <div class="row">
+          <div class="field" data-field="password">
+            <label for="password">Password <span class="req" aria-hidden="true">*</span></label>
+            <input type="password" id="password" name="password" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password" aria-describedby="strength-text password-error">
+            <div class="strength" aria-hidden="true"><span id="strength-bar"></span></div>
+            <p class="hint" id="strength-text" aria-live="polite">Strength: enter a password</p>
+            <p class="error" id="password-error" role="alert"></p>
+          </div>
+          <div class="field" data-field="confirmPassword">
+            <label for="confirmPassword">Confirm password <span class="req" aria-hidden="true">*</span></label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required minlength="8" autocomplete="new-password" aria-describedby="confirmPassword-error">
+            <p class="error" id="confirmPassword-error" role="alert"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 04 ADDRESS -->
+      <fieldset class="section" data-step="4">
+        <legend><span class="num">4</span>Address</legend>
+
+        <div class="field" data-field="address">
+          <label for="address">Address <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="address" name="address" rows="2" required minlength="5" maxlength="200" placeholder="House name, street, area" autocomplete="street-address" aria-describedby="address-error"></textarea>
+          <p class="error" id="address-error" role="alert"></p>
+        </div>
+
+        <div class="row three">
+          <div class="field" data-field="city">
+            <label for="city">City <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="city" name="city" required autocomplete="address-level2" aria-describedby="city-error">
+            <p class="error" id="city-error" role="alert"></p>
+          </div>
+          <div class="field" data-field="state">
+            <label for="state">State <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="state" name="state" required autocomplete="address-level1" aria-describedby="state-error">
+            <p class="error" id="state-error" role="alert"></p>
+          </div>
+          <div class="field" data-field="pin">
+            <label for="pin">PIN code <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="pin" name="pin" required pattern="[0-9]{6}" maxlength="6" inputmode="numeric" autocomplete="postal-code" aria-describedby="pin-error">
+            <p class="error" id="pin-error" role="alert"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 05 CONFIRMATION -->
+      <fieldset class="section" data-step="5">
+        <legend><span class="num">5</span>Confirmation</legend>
+        <div class="field" data-field="terms">
+          <label class="choice"><input type="checkbox" id="terms" name="terms" required aria-describedby="terms-error"> I agree to the terms and conditions. <span class="req" aria-hidden="true">*</span></label>
+          <p class="error" id="terms-error" role="alert"></p>
+        </div>
+        <button type="submit" class="btn" id="submitBtn"><span class="btn-text">Register</span><span class="spinner" aria-hidden="true"></span></button>
+        <p class="hint center">Your data stays in this browser. Nothing is uploaded.</p>
+      </fieldset>
+    </form>
+
+    <!-- Shown after a successful submission -->
+    <div id="success" class="success" hidden tabindex="-1">
+      <div class="tick" aria-hidden="true">✓</div>
+      <h2>Registration Successful!</h2>
+      <p>Your student profile has been submitted successfully.</p>
+      <dl id="summary" class="summary"></dl>
+      <button type="button" class="btn ghost" id="againBtn">Register another student</button>
+    </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
